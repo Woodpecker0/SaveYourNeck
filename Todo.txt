@@ -1,0 +1,7 @@
+I think there are some interesting function can be extended.
+
+1,Since the face width and eyes distance maybe different from everyone or different laptop, if users can pre-set parameters through gui, it would be better.
+
+2,The angle between camera(screen) and eyes should be detected to prevent neckache (neck pain caused by wrong reading pose.)
+
+3,The time of using computer can be recorded to remaind the user whether they should have a rest.
