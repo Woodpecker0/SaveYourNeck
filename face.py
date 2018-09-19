@@ -4,7 +4,8 @@ import sys
 import winsound#for winsound.Beep
 
 import numpy as np
-def gamma_trans(img,gamma): #gamma function
+
+def gamma_trans(img,gamma): #gamma function, increase the brightness
     gamma_table=[np.power(x/255.0,gamma)*255.0 for x in range(256)] #build map
     gamma_table=np.round(np.array(gamma_table)).astype(np.uint8) #color is int
     return cv2.LUT(img,gamma_table) #search color map, or you can adjust by light average principle of photo
@@ -17,7 +18,7 @@ eye_xml = cv2.CascadeClassifier('D:\\Program Files(x64)\\Phthon\\Lib\\site-packa
 #
 recover = 0
 reflash_top_window_counter = 0
-sleep_time_s = 4;
+sleep_time_s = 4
 while(cap.isOpened()):
     time.sleep(sleep_time_s)
 
@@ -50,7 +51,7 @@ while(cap.isOpened()):
                 cv2.destroyAllWindows()
         else:#if face is not completely in screen, detect eyes distance
             #eye_result=eye_glass_xml.detectMultiScale(frame)# To do: affected by light(face is dark...)
-            value_of_gamma = 0.5 # 0-1 :increase; 1-10 decrease
+            value_of_gamma = 0.4 # 0-1 :increase; 1-10 decrease
             image_gamma_correct=gamma_trans(image,value_of_gamma)   
             eye_result=eye_glass_xml.detectMultiScale(image_gamma_correct)# better after gamma correct(so you see meituxiuxiu is really useful ...)
             #print(eye_result)
@@ -73,6 +74,8 @@ while(cap.isOpened()):
     
     if warning == 1:
         winsound.Beep(600,100)
+        time.sleep(4*sleep_time_s)
+        
     
 #incase the user ignore and put the window backgroud, reflash to front, but it's not useful
     #reflash_top_window_counter = reflash_top_window_counter +1
